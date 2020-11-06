@@ -53,7 +53,6 @@ export default class Register extends Component {
             }}/>
 
             <InputRadio optionName="Пол" options={this.options} onChange={e => {
-                console.log(e.target.value);
                 this.setState({gender: e.target.value})
             }}/>
 
