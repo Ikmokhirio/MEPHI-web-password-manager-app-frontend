@@ -25,8 +25,13 @@ export default class InputRadio extends Component {
                 <div className="input_radio">
                     {
                         this.props.options.map(option => {
-                            return <div className="options"><input name={option.name} type="radio"
-                                                                   value={option.value}/><label htmlFor={option.value}> {option.text}</label></div>
+                            return (
+                                <div className="options" key={option.value}><input name={option.name} type="radio"
+                                                                                   value={option.value}
+                                                                                   onChange={this.props.onChange}/>
+                                    <label htmlFor={option.value}> {option.text}</label>
+                                </div>
+                            )
                         })
                     }
                 </div>
