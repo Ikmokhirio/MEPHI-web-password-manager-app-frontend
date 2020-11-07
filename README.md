@@ -1,2 +1,2 @@
-# quiz-web-frontend
-Simple quiz project (node+express+postgres+docker)
+# web-frontend
+Simple web project (node+react+express+postgres+docker)
