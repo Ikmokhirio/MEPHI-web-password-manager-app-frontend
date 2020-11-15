@@ -5,13 +5,7 @@ import Login from "./components/login";
 import Register from "./components/register";
 import Home from "./components/home"
 
-import {
-    Route,
-    Switch,
-    Redirect,
-    withRouter
-} from "react-router-dom"
-
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 function App() {
 
