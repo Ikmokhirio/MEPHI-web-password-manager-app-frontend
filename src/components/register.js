@@ -5,7 +5,6 @@ import InputRadio from "./input/inputRadio";
 
 export default class Register extends Component {
 
-
     constructor(props) {
         super(props);
 
@@ -21,12 +20,12 @@ export default class Register extends Component {
             {
                 name:"gender",
                 value:"Male",
-                text:"М"
+                text:"M"
             },
             {
                 name:"gender",
                 value:"Female",
-                text:"Ж"
+                text:"F"
             }
         ]
     }
@@ -52,7 +51,7 @@ export default class Register extends Component {
                 this.setState({password: e.target.value})
             }}/>
 
-            <InputRadio optionName="Пол" options={this.options} onChange={e => {
+            <InputRadio optionName="Gender" options={this.options} onChange={e => {
                 this.setState({gender: e.target.value})
             }}/>
 
