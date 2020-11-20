@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
+/*======GLOBAL STYLES========*/
 
 body {
     margin: 0;
@@ -71,6 +72,15 @@ body {
     cursor: pointer;
 }
 
+@media screen and (max-width: 900px) {
+    /* Adaptive header links */
+    .header .btn button {
+        width: 128px;
+        height: 32px;
+        font-size: 24px;
+    }
+}
+
 /*=====FOOTER========*/
 
 .footer {
@@ -102,7 +112,7 @@ body {
 }
 
 
-/*=====CONTENT========*/
+/*=====CARDS WRAPPER========*/
 
 .content {
     display: grid;
@@ -111,7 +121,7 @@ body {
     max-width: 70vw;
 }
 
-/*=======LOGIN FORM========*/
+/*=======INPUT FORM========*/
 
 .input_form {
     width: 360px;
@@ -218,7 +228,7 @@ body {
 }
 
 .input_select p {
-   text-align: center;
+    text-align: center;
 }
 
 .input_radio {
@@ -255,7 +265,7 @@ body {
 
 
 .input_radio input[type="radio"]:hover {
-    background: rgba(40, 42, 54,0.75);
+    background: rgba(40, 42, 54, 0.75);
     border: none;
     cursor: pointer;
 }
@@ -294,14 +304,13 @@ body {
     flex-direction: column;
     align-items: center;
 
-    box-shadow: 0 20px 50px rgba(0,0,0,0.55);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
 }
 
-@media screen and (max-width: 981px){
+@media screen and (max-width: 981px) {
     .content {
         position: relative;
-        /*background-color: #ff5555;*/
-        display:flex;
+        display: flex;
         flex-direction: row;
         justify-content: space-evenly;
         flex-wrap: wrap;
@@ -311,9 +320,6 @@ body {
     }
 
 }
-
-
-
 
 .info_card h1 {
     margin: 25px 0;
@@ -384,7 +390,7 @@ body {
     width: 100%;
 }
 
-.left_block .user_data .btn button{
+.left_block .user_data .btn button {
     width: 192px;
     height: 48px;
     font-size: 16px;
@@ -416,6 +422,7 @@ body {
     align-items: center;
     width: 75%;
 }
+
 .change_form {
     display: flex;
     flex-direction: column;
@@ -446,7 +453,8 @@ body {
     margin: 15px;
 }
 
-@media screen and (max-width: 1350px) { /* width < 1363px => */
+@media screen and (max-width: 1350px) {
+    /* width < 1363px => */
     .user_profile {
         flex-direction: column;
         justify-content: center;
@@ -458,6 +466,7 @@ body {
         height: 304px;
         margin: 0;
     }
+
     .user_data {
         width: 95%;
         height: 95%;
@@ -466,10 +475,3 @@ body {
 
 }
 
-@media screen and (max-width: 900px) {
-    .header .btn button {
-        width: 128px;
-        height: 32px;
-        font-size: 24px;
-    }
-}
