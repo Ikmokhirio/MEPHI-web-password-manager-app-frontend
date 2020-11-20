@@ -41,7 +41,7 @@ body {
     flex-wrap: wrap;
 
     width: 100vw;
-    min-height: 20vh;
+    min-height: 10vh;
 
 
 }
@@ -136,7 +136,6 @@ body {
     border-bottom: 2px solid #373F47;
     position: relative;
     margin: 30px 0;
-
 }
 
 .input_text input,
@@ -172,6 +171,11 @@ body {
     opacity: 1;
     transform: translateY(-100%);
     pointer-events: none;
+}
+
+.input_form .btn {
+    display: flex;
+    justify-content: center;
 }
 
 .input_form .btn button {
@@ -336,4 +340,136 @@ body {
     color: #f8f8f2;
     border: none;
     background-color: #282a36;
+}
+
+/*===========USER PROFILE============+*/
+
+.user_profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: #f8f8f2;
+    width: 70vw;
+    max-width: 1024px;
+    margin: 20px;
+    min-height: 512px;
+
+    border-radius: 5px;
+
+}
+
+.left_block h1, .left_block h2, .left_block p {
+    color: #282a36;
+}
+
+.left_block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+    border-radius: inherit;
+    margin: 0;
+
+    background-color: #ff5555;
+
+    max-height: 100%;
+    width: 25%;
+
+    transition: 0.3s ease-in-out all;
+}
+
+.left_block .user_data .btn {
+    margin: 0;
+    width: 100%;
+}
+
+.left_block .user_data .btn button{
+    width: 192px;
+    height: 48px;
+    font-size: 16px;
+    color: #282a36;
+    border: 4px solid #282a36;
+    transition: 0.25s ease-in-out;
+    text-transform: uppercase;
+}
+
+.left_block .user_data .btn button:hover {
+    border: none;
+    background-color: #282a36;
+    color: #f8f8f2;
+    cursor: pointer;
+}
+
+.user_data {
+    text-align: center;
+    background-color: #f8f8f2;
+    width: 90%;
+    height: 95%;
+    margin: 5%;
+    border-radius: 5px;
+}
+
+.right_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+}
+.change_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.change_form h1 {
+    color: #282a36;
+}
+
+.change_form .btn button {
+    color: #282a36;
+    border: 4px solid #282a36;
+    transition: 0.25s ease-in-out;
+    text-transform: uppercase;
+}
+
+.change_form .btn button:hover {
+    border: none;
+    background-color: #282a36;
+    color: #f8f8f2;
+    cursor: pointer;
+}
+
+.change_form .input_text {
+    width: 80%;
+    margin: 15px;
+}
+
+@media screen and (max-width: 1350px) { /* width < 1363px => */
+    .user_profile {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .left_block {
+        width: 100%;
+        height: 304px;
+        margin: 0;
+    }
+    .user_data {
+        width: 95%;
+        height: 95%;
+        margin: 2.5%;
+    }
+
+}
+
+@media screen and (max-width: 900px) {
+    .header .btn button {
+        width: 128px;
+        height: 32px;
+        font-size: 24px;
+    }
 }
