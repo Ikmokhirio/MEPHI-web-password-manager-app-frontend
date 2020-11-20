@@ -55,6 +55,10 @@ export default class Register extends Component {
                 this.setState({gender: e.target.value})
             }}/>
 
+            <InputField name="master_password" type="password" placeholder="Master password" onChange={e => {
+                this.setState({password: e.target.value})
+            }}/>
+
             <div className="btn">
                 <button onClick={this.handleClick}>Register</button>
             </div>
