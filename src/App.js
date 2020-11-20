@@ -1,9 +1,10 @@
 import React, {Suspense} from 'react';
-import Header from "./components/header";
-import Footer from "./components/footer";
+import Header from "./components/static/header";
+import Footer from "./components/static/footer";
 import Login from "./components/login";
 import Register from "./components/register";
 import Home from "./components/home"
+import UserProfile from "./components/user_page/userProfile";
 
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
@@ -18,6 +19,7 @@ function App() {
                         <Route exact path="/" component={Home}/>
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/register" component={Register}/>
+                        <Route exact path="/user" component={UserProfile}/>
                     </Switch>
                 </Suspense>
             </div>
