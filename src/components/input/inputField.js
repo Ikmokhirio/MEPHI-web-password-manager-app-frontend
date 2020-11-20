@@ -21,7 +21,7 @@ export default class InputField extends Component {
     render() {
         return (
             <div className="input_text">
-                <input name={this.props.name} type={this.props.type} placeholder="" onFocus={this.inputFocus} onBlur={this.inputBlur} onChange={this.props.onChange} required/>
+                <input name={this.props.name} type={this.props.type} placeholder="" onFocus={this.inputFocus} onBlur={this.inputBlur} onChange={this.props.onChange}/>
                 <span className={this.state.placeholderClass}>{this.props.placeholder}</span>
             </div>
         );
