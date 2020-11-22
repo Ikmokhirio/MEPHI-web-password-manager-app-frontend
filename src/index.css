@@ -493,18 +493,16 @@ body {
 
 
     max-width: 70vw;
-
-
     min-height: 70vh;
 }
 
-@media screen and (max-width: 981px) {
+@media screen and (max-width: 900px) {
     .passwords_container {
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-around;
         flex-wrap: wrap;
-        flex-shrink: 1;
+        flex-shrink: 0;
         max-width: 70vw;
     }
 
@@ -528,6 +526,12 @@ body {
 
     margin: 16px;
 
+    transition: 0.25s linear all;
+
+}
+
+.password_card:hover {
+    box-shadow: 0 2px 10px 0 #f8f8f2;
 }
 
 .password_field{
