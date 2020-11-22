@@ -5,8 +5,10 @@ import Login from "./components/login";
 import Register from "./components/register";
 import Home from "./components/home"
 import UserProfile from "./components/user_page/userProfile";
+import passwords from "./components/passwords/passwords";
 
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+
 
 function App() {
 
@@ -20,6 +22,7 @@ function App() {
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/user" component={UserProfile}/>
+                        <Route exact path="/passwords" component={passwords}/>
                     </Switch>
                 </Suspense>
             </div>
