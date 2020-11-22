@@ -488,6 +488,8 @@ body {
 
     display: grid;
     grid-template-columns: repeat(auto-fill, 388px);
+    grid-template-rows: repeat(auto-fill, 160px);
+    /*grid-auto-columns: min-content;*/
 
 
     max-width: 70vw;
@@ -672,3 +674,22 @@ body {
     pointer-events: none
 }
 
+.add_password_button button {
+    border-radius: 15px;
+
+    width: 372px;
+    height: 128px;
+
+    border: none;
+    background-color: #f8f8f2;
+    margin: 16px;
+    padding: 0;
+    opacity: .5;
+    transition: 0.2s ease-in-out all;
+}
+
+
+.add_password_button button:hover {
+    opacity: .75;
+    cursor: pointer;
+}
