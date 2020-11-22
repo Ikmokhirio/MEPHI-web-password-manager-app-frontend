@@ -9,8 +9,8 @@ export default class Passwords extends Component {
         this.updatePassword = this.updatePassword.bind(this)
     }
 
-    updatePassword(passwordId,newPassword) {
-        console.log("SET " + passwordId + " to be " + newPassword)
+    updatePassword(passwordData) {
+        console.log("SET: " + passwordData)
         console.log("UPDATING FROM SERVER")
     }
 
@@ -19,10 +19,11 @@ export default class Passwords extends Component {
         return (
             <div className="passwords_container">
 
-                <PasswordCard title="Test password" password="1234" updatePassword={this.updatePassword} id={25}/>
+                <PasswordCard title="VK password" login="user" password="1234" updatePassword={this.updatePassword} id={25}/>
 
+                <PasswordCard title="Mail password" login="user" password="1234567" updatePassword={this.updatePassword} id={26}/>
 
-
+                <PasswordCard title="YouTube password" login="user" password="1234dasd567" updatePassword={this.updatePassword} id={27}/>
 
             </div>
 
