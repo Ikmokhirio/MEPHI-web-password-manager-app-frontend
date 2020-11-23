@@ -130,7 +130,7 @@ body {
     width: 360px;
     background-color: #f8f8f2;
     border: 5px solid #ff5555;
-    min-height: 400px;
+    height: min-content;
     padding: 32px 32px;
     border-radius: 10px;
 
@@ -534,7 +534,7 @@ body {
     box-shadow: 0 2px 10px 0 #f8f8f2;
 }
 
-.password_field{
+.password_field {
     margin: 15px;
     color: #373F47;
 
@@ -542,8 +542,9 @@ body {
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Old versions of Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                     supported by Chrome, Edge, Opera and Firefox */
 }
 
 .password_card h1, .password_card h2 {
@@ -561,8 +562,9 @@ body {
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Old versions of Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                     supported by Chrome, Edge, Opera and Firefox */
 }
 
 .password_card h1 {
@@ -573,14 +575,14 @@ body {
     font-size: 16px;
 }
 
-.password_card .edit{
+.password_card .edit {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.password_card .edit input{
+.password_card .edit input {
     margin: 5px;
     width: 90%;
     color: #373F47;
@@ -618,8 +620,9 @@ body {
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Old versions of Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                     supported by Chrome, Edge, Opera and Firefox */
 }
 
 .password_field button {
@@ -636,7 +639,7 @@ body {
     inset 0 -1px 2px 0 #282a36;
 }
 
-.password_field button:hover{
+.password_field button:hover {
     cursor: pointer;
     color: #ff5555;
 }
@@ -656,7 +659,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 85, 85,0.25);
+    background: rgba(255, 85, 85, 0.25);
     transition: 0.5s ease-in-out all;
     pointer-events: none;
 
@@ -664,8 +667,9 @@ body {
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Old versions of Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                     supported by Chrome, Edge, Opera and Firefox */
 
 }
 
@@ -673,7 +677,7 @@ body {
     opacity: 0;
 }
 
-.copied_visible h1, .copied_hidden h1{
+.copied_visible h1, .copied_hidden h1 {
     color: #f8f8f2;
     pointer-events: none
 }
@@ -695,5 +699,48 @@ body {
 
 .add_password_button button:hover {
     opacity: .75;
+    cursor: pointer;
+}
+
+/*===========ADD PASSWORD POPUP=============*/
+
+.add_password_popup {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.5);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+.add_password_popup .input_form {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 360px;
+    height: 512px;
+    margin-left: -192px;
+    margin-top: -268px;
+    padding: 32px 32px;
+}
+
+.add_password_popup .close_button {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.add_password_popup .close_button button {
+    background: none;
+    margin: 5px;
+    padding: 0;
+    border: none;
+    font-size: 24px;
+}
+
+.add_password_popup .close_button button:hover {
+    color: #ff5555;
     cursor: pointer;
 }
