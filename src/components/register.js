@@ -36,7 +36,7 @@ export default class Register extends Component {
 
         console.log("SENDING")
 
-        fetch('/users', {
+        fetch('/api/users', {
             method: "post",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -46,7 +46,7 @@ export default class Register extends Component {
                 "master_password" : this.state.master_password
             })
         }).then(res => {
-            console.log(res.text())
+            res.text().then(data => console.log(data))
         }).catch(e => {
             console.error((e))
         })

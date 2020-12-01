@@ -15,7 +15,21 @@ export default class Login extends Component {
 
     handleClick(event) {
         event.preventDefault();
-        alert(JSON.stringify(this.state));
+
+        console.log("SENDING")
+
+        fetch('/api/users/login', {
+            method: "post",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                "username" : this.state.username,
+                "password" : this.state.password
+            })
+        }).then(res => {
+            res.text().then(data => console.log(data))
+        }).catch(e => {
+            console.error((e))
+        })
     }
 
     render() {

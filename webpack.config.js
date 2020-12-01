@@ -27,7 +27,7 @@ module.exports = {
         port: 8000,
         open: true,
         proxy: {
-            '/users': {
+            '/api/': {
                 target: {
                     host: '127.0.0.1',
                     protocol: 'http',
