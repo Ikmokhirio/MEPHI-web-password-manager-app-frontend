@@ -16,6 +16,7 @@ class App extends Component {
         super(props);
 
         this.updateUserData = this.updateUserData.bind(this)
+        this.logout = this.logout.bind(this)
 
         this.state = {
             username: "", // Current user data
@@ -48,6 +49,21 @@ class App extends Component {
         })
     }
 
+    logout() {
+        fetch('/api/user/logout', {
+            method: "get",
+            headers: {'Content-Type': 'application/json'}
+        }).then(res => {
+            this.setState({
+                username: "",
+                role: "",
+                email: ""
+            })
+        }).catch(e => {
+            console.error((e))
+        })
+    }
+
     render() {
         return (<div className="Wrapper">
             <Header/>
@@ -66,8 +82,9 @@ class App extends Component {
 
                         <Route exact path="/user"
                                render={(props) => (
-                                   <UserProfile {...props} user={this.state}/>
+                                   <UserProfile {...props} user={this.state} logout={this.logout}/>
                                )}/>
+
                         <Route exact path="/passwords" component={passwords}/>
 
                         <Redirect from={'/home'} to={'/'}/>

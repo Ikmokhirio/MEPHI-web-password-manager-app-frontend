@@ -22,11 +22,10 @@ export default class Login extends Component {
             method: "post",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                "username" : this.state.username,
-                "password" : this.state.password
+                "username": this.state.username,
+                "password": this.state.password
             })
         }).then(res => {
-            res.text().then(data => console.log(data))
             this.props.onUpdate()
         }).catch(e => {
             console.error((e))

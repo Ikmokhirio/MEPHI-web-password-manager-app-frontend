@@ -56,6 +56,12 @@ export default class UserProfile extends Component {
                                 <button>My passwords</button>
                             </Link>
                         </div>
+
+                        <div className="btn">
+                            <Link to='/login'>
+                                <button onClick={this.props.logout}>Log Out</button>
+                            </Link>
+                        </div>
                     </div>
 
                 </div>
