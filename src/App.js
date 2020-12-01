@@ -7,7 +7,7 @@ import Home from "./components/home"
 import UserProfile from "./components/user_page/userProfile";
 import passwords from "./components/passwords/passwords";
 
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
 
 
 class App extends Component {
@@ -65,9 +65,13 @@ class App extends Component {
                                )}/>
 
                         <Route exact path="/user"
-                               render={(props) => (<UserProfile {...props} user={this.state}/>
+                               render={(props) => (
+                                   <UserProfile {...props} user={this.state}/>
                                )}/>
                         <Route exact path="/passwords" component={passwords}/>
+
+                        <Redirect from={'/home'} to={'/'}/>
+                        <Redirect from={'/index'} to={'/'}/>
                     </Switch>
                 </Suspense>
             </div>
