@@ -28,6 +28,11 @@ export default class Header extends Component {
                     <button>REGISTER</button>
                 </Link>
             </div>
+            <div className="btn">
+                <Link to="/user">
+                    <button>MY PAGE</button>
+                </Link>
+            </div>
 
 
         </div>)
