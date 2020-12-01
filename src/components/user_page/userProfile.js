@@ -9,8 +9,9 @@ export default class UserProfile extends Component {
         super(props);
 
         this.handleClick = this.handleClick.bind(this);
+
         this.state = {
-            email: "",
+            new_email: "",
             current_master_password: "",
             new_master_password: "",
             current_password: "",
@@ -41,10 +42,10 @@ export default class UserProfile extends Component {
         return (<div className="user_profile">
             <div className="left_block">
                 <div className="user_data">
-                    <h1>USERNAME</h1>
-                    <p>DEFAULT USER</p>
+                    <h1>{this.props.user.username}</h1>
+                    <p>{this.props.user.role}</p>
                     <h2>Email</h2>
-                    <p>user@mail.ru</p>
+                    <p>{this.props.user.email}</p>
 
                     <div className="btn">
                         <Link to='/passwords'>
