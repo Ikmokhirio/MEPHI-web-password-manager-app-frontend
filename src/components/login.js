@@ -27,6 +27,7 @@ export default class Login extends Component {
             })
         }).then(res => {
             res.text().then(data => console.log(data))
+            this.props.onUpdate()
         }).catch(e => {
             console.error((e))
         })
