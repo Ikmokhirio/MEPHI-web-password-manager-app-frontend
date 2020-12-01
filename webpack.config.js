@@ -24,7 +24,16 @@ module.exports = {
         contentBase: path.join(__dirname, '/public'),
         historyApiFallback: true,
         compress: true,
-        port: 3000,
-        open: true
+        port: 8000,
+        open: true,
+        proxy: {
+            '/users': {
+                target: {
+                    host: '127.0.0.1',
+                    protocol: 'http',
+                    port: 3000
+                }
+            }
+        }
     }
 }
