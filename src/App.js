@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import React, {Component, Suspense} from 'react';
 import Header from "./components/static/header";
 import Footer from "./components/static/footer";
 import Login from "./components/login";
@@ -10,18 +10,63 @@ import passwords from "./components/passwords/passwords";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 
-function App() {
+class App extends Component {
 
-    return (
-        <div className="Wrapper">
+    constructor(props) {
+        super(props);
+
+        this.updateUserData = this.updateUserData.bind(this)
+
+        this.state = {
+            username: "", // Current user data
+            role: "",
+            email: ""
+        }
+    }
+
+    componentDidMount() {
+        this.updateUserData() // Update user data if we have been logged already
+    }
+
+    updateUserData() {
+        console.log("UPDATING USER DATA")
+
+        fetch('/api/user', {
+            method: "get",
+            headers: {'Content-Type': 'application/json'}
+        }).then(res => {
+            res.json().then(data => {
+                this.setState({
+                    email: data.email,
+                    username: data.username,
+                    role: data.role
+                })
+
+            })
+        }).catch(e => {
+            console.error((e))
+        })
+    }
+
+    render() {
+        return (<div className="Wrapper">
             <Header/>
             <div className="wrapper_content">
                 <Suspense fallback={<div>Loading...</div>}>
                     <Switch>
                         <Route exact path="/" component={Home}/>
-                        <Route exact path="/login" component={Login}/>
-                        <Route exact path="/register" component={Register}/>
-                        <Route exact path="/user" component={UserProfile}/>
+
+                        <Route exact path="/login"
+                               render={(props) => (<Login {...props} onUpdate={this.updateUserData}/>
+                               )}/>
+
+                        <Route exact path="/register"
+                               render={(props) => (<Register {...props} onUpdate={this.updateUserData}/>
+                               )}/>
+
+                        <Route exact path="/user"
+                               render={(props) => (<UserProfile {...props} user={this.state}/>
+                               )}/>
                         <Route exact path="/passwords" component={passwords}/>
                     </Switch>
                 </Suspense>
@@ -29,8 +74,8 @@ function App() {
 
 
             <Footer/>
-        </div>
-    );
+        </div>)
+    }
 }
 
 export default App;
