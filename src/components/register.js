@@ -13,7 +13,8 @@ export default class Register extends Component {
             email: "",
             username: "",
             password: "",
-            gender: ""
+            gender: "",
+            master_password: ""
         }
 
         this.options = [
@@ -32,7 +33,24 @@ export default class Register extends Component {
 
     handleClick(event) {
         event.preventDefault();
-        alert(JSON.stringify(this.state));
+
+        console.log("SENDING")
+
+        fetch('/users', {
+            method: "post",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                "username" : this.state.username,
+                "password" : this.state.password,
+                "email" : this.state.email,
+                "master_password" : this.state.master_password
+            })
+        }).then(res => {
+            console.log(res.text())
+        }).catch(e => {
+            console.error((e))
+        })
+
     }
 
     render() {
@@ -56,7 +74,7 @@ export default class Register extends Component {
             }}/>
 
             <InputField name="master_password" type="password" placeholder="Master password" onChange={e => {
-                this.setState({password: e.target.value})
+                this.setState({master_password: e.target.value})
             }}/>
 
             <div className="btn">
