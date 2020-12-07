@@ -1,7 +1,6 @@
 import React, {Component} from "react"
 import {Link, Redirect} from "react-router-dom";
 import InputField from "../input/inputField";
-import InputRadio from "../input/inputRadio";
 
 export default class UserProfile extends Component {
 
@@ -16,21 +15,7 @@ export default class UserProfile extends Component {
             new_master_password: "",
             current_password: "",
             new_password: "",
-            gender: ""
         }
-
-        this.options = [
-            {
-                name: "gender",
-                value: "Male",
-                text: "M"
-            },
-            {
-                name: "gender",
-                value: "Female",
-                text: "F"
-            }
-        ]
     }
 
     handleClick(event) {
@@ -113,10 +98,6 @@ export default class UserProfile extends Component {
 
                         <InputField name="Email" type="text" placeholder="E-mail" onChange={e => {
                             this.setState({new_email: e.target.value})
-                        }}/>
-
-                        <InputRadio optionName="Gender" options={this.options} onChange={e => {
-                            this.setState({gender: e.target.value})
                         }}/>
 
                         <div className="btn">

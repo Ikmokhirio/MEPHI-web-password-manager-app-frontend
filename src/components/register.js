@@ -1,7 +1,6 @@
 import React, {Component} from "react"
 import {Link} from "react-router-dom";
 import InputField from "./input/inputField";
-import InputRadio from "./input/inputRadio";
 
 export default class Register extends Component {
 
@@ -13,22 +12,8 @@ export default class Register extends Component {
             email: "",
             username: "",
             password: "",
-            gender: "",
             master_password: ""
         }
-
-        this.options = [
-            {
-                name:"gender",
-                value:"Male",
-                text:"M"
-            },
-            {
-                name:"gender",
-                value:"Female",
-                text:"F"
-            }
-        ]
     }
 
     handleClick(event) {
@@ -68,10 +53,6 @@ export default class Register extends Component {
 
             <InputField name="Password" type="password" placeholder="Password" onChange={e => {
                 this.setState({password: e.target.value})
-            }}/>
-
-            <InputRadio optionName="Gender" options={this.options} onChange={e => {
-                this.setState({gender: e.target.value})
             }}/>
 
             <InputField name="master_password" type="password" placeholder="Master password" onChange={e => {
