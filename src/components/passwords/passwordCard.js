@@ -27,7 +27,7 @@ export default class PasswordCard extends Component {
                 }, 1000);
             }
         ).catch(e => {
-            console.log(e)
+            console.error(e)
             this.setState({visible: false, copied: false, edit: false})
         });
     }

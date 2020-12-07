@@ -5,7 +5,7 @@ import AddPassword from "../input/addPassword";
 export default class Passwords extends Component {
 
     constructor(props) {
-        super(props);
+        super(props)
 
         this.updatePassword = this.updatePassword.bind(this)
         this.getPasswords = this.getPasswords.bind(this)
@@ -19,19 +19,23 @@ export default class Passwords extends Component {
     }
 
     updatePassword(passwordData) {
-        console.log(JSON.stringify(passwordData))
         fetch('/api/passwords', {
             method: "put",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(passwordData)
         }).then(res => {
+
             res.json().then(data => {
-                console.log(data)
+                if(data.error_name) {
+                    console.error(data.error_name)
+                }
                 this.getPasswords()
+            }).catch(e => {
+                console.error(e)
             })
 
         }).catch(e => {
-            console.error((e))
+            console.error(e)
         })
     }
 
@@ -42,8 +46,6 @@ export default class Passwords extends Component {
             body: JSON.stringify(passwordData)
         }).then(res => {
             res.json().then(data => {
-                console.log(data)
-                console.log(typeof this.getPasswords)
                 this.getPasswords()
             })
 

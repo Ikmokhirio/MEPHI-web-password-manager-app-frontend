@@ -22,6 +22,9 @@ export default class AddPassword extends Component {
             body: JSON.stringify(this.state)
         }).then(res => {
             res.json().then(data => {
+                if(data.error_name) {
+                    console.error(data.error_name)
+                }
                 this.props.onAdd()
                 this.props.onClose()
             })

@@ -27,7 +27,17 @@ export default class Login extends Component {
                 password: this.state.password
             })
         }).then(res => {
-            this.setState({logged: true})
+
+            res.json().then(data => {
+                if (data.error_name) {
+                    console.error(data.error_name)
+                    this.setState({logged: false})
+                } else {
+                    this.setState({logged: true})
+                }
+            }).catch(e => {
+                console.error((e))
+            })
         }).catch(e => {
             console.error((e))
         })

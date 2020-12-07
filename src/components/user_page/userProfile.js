@@ -21,7 +21,7 @@ export default class UserProfile extends Component {
             new_master_password: "",
             current_password: "",
             new_password: "",
-            not_logged: false
+            logged: true
         }
     }
 
@@ -48,14 +48,15 @@ export default class UserProfile extends Component {
 
     updateUserData() {
 
-        this.setState({not_logged: false})
-        fetch('/api/user', {
+        this.setState({logged: true})
+        fetch('/api/users', {
             method: "get",
             headers: {'Content-Type': 'application/json'}
         }).then(res => {
             res.json().then(data => {
-                if (data.message) {
-                    this.setState({not_logged: true})
+                if (data.error_name) {
+                    console.error(data.error_name)
+                    this.setState({logged: false})
                 } else {
                     this.setState({
                         email: data.email,
@@ -63,9 +64,11 @@ export default class UserProfile extends Component {
                         role: data.role
                     })
                 }
+            }).catch(e => {
+                console.error(e)
             })
         }).catch(e => {
-            console.error((e))
+            console.error(e)
         })
     }
 
@@ -91,8 +94,6 @@ export default class UserProfile extends Component {
             console.error((e))
         })
         this.logout()
-
-        Redirect('/login')
     }
 
     componentDidMount() {
@@ -100,11 +101,12 @@ export default class UserProfile extends Component {
     }
 
     render() {
-        if (this.state.not_logged) {
+        if (!this.state.logged) {
             return <Redirect to={"/login"}/>
         }
         return (
             <div className="user_profile">
+
                 <div className="left_block">
                     <div className="user_data">
                         <h1>{this.state.username}</h1>

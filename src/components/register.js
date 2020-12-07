@@ -31,8 +31,18 @@ export default class Register extends Component {
                 "master_password": this.state.master_password
             })
         }).then(res => {
-            res.text().then(data => console.log(data))
-            this.setState({logged: true})
+
+            res.json().then(data => {
+                if (data.error_name) {
+                    console.error(data.error_name)
+                    this.setState({logged: false})
+                } else {
+                    this.setState({logged: true})
+                }
+            }).catch(e => {
+                console.error((e))
+            })
+
         }).catch(e => {
             console.error((e))
         })
