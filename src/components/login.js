@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import {Link} from "react-router-dom";
+import {Redirect, Link} from "react-router-dom";
 import InputField from "./input/inputField";
 
 export default class Login extends Component {
@@ -9,14 +9,15 @@ export default class Login extends Component {
         this.handleClick = this.handleClick.bind(this);
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            logged: false
         }
     }
 
     handleClick(event) {
         event.preventDefault();
 
-        console.log("SENDING")
+        this.setState({logged: false})
 
         fetch('/api/users/login', {
             method: "post",
@@ -26,13 +27,16 @@ export default class Login extends Component {
                 password: this.state.password
             })
         }).then(res => {
-            this.props.onUpdate()
+            this.setState({logged: true})
         }).catch(e => {
             console.error((e))
         })
     }
 
     render() {
+        if (this.state.logged) {
+            return <Redirect to={"/user"}/>
+        }
         return (<form className="input_form">
             <h1>Login</h1>
 

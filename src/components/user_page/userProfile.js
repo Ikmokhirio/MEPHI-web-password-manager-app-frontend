@@ -5,16 +5,23 @@ import InputField from "../input/inputField";
 export default class UserProfile extends Component {
 
     constructor(props) {
-        super(props);
+        super(props)
 
         this.handleClick = this.handleClick.bind(this);
+        this.updateUserData = this.updateUserData.bind(this)
+        this.logout = this.logout.bind(this)
+        this.deleteAccount = this.deleteAccount.bind(this)
 
         this.state = {
+            username: "",
+            role: "",
+            email: "",
             new_email: "",
             current_master_password: "",
             new_master_password: "",
             current_password: "",
             new_password: "",
+            not_logged: false
         }
     }
 
@@ -25,7 +32,7 @@ export default class UserProfile extends Component {
             method: "put",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                username: this.props.user.username,
+                username: this.state.username,
                 password: this.state.current_password,
                 new_password: this.state.new_password,
                 new_master_password: this.state.new_master_password,
@@ -33,24 +40,77 @@ export default class UserProfile extends Component {
 
             })
         }).then(res => {
-            this.props.onUpdate()
+            this.onUpdate()
         }).catch(e => {
             console.error((e))
         })
     }
 
-    render() {
-        if (!this.props.user || !this.props.user.username || this.props.user.username === "") return (
-            <Redirect to="/login"/>)
+    updateUserData() {
 
+        this.setState({not_logged: false})
+        fetch('/api/user', {
+            method: "get",
+            headers: {'Content-Type': 'application/json'}
+        }).then(res => {
+            res.json().then(data => {
+                if (data.message) {
+                    this.setState({not_logged: true})
+                } else {
+                    this.setState({
+                        email: data.email,
+                        username: data.username,
+                        role: data.role
+                    })
+                }
+            })
+        }).catch(e => {
+            console.error((e))
+        })
+    }
+
+    logout() {
+        fetch('/api/user/logout', {
+            method: "get",
+            headers: {'Content-Type': 'application/json'}
+        })
+    }
+
+    deleteAccount() {
+
+        fetch('/api/users', {
+            method: "delete",
+            headers: {'Content-Type': 'application/json'}
+        }).then(res => {
+            this.setState({
+                username: "",
+                role: "",
+                email: ""
+            })
+        }).catch(e => {
+            console.error((e))
+        })
+        this.logout()
+
+        Redirect('/login')
+    }
+
+    componentDidMount() {
+        this.updateUserData()
+    }
+
+    render() {
+        if (this.state.not_logged) {
+            return <Redirect to={"/login"}/>
+        }
         return (
             <div className="user_profile">
                 <div className="left_block">
                     <div className="user_data">
-                        <h1>{this.props.user.username}</h1>
-                        <p>{this.props.user.role}</p>
+                        <h1>{this.state.username}</h1>
+                        <p>{this.state.role}</p>
                         <h2>Email</h2>
-                        <p>{this.props.user.email}</p>
+                        <p>{this.state.email}</p>
 
                         <div className="btn">
                             <Link to='/passwords'>
@@ -60,12 +120,12 @@ export default class UserProfile extends Component {
 
                         <div className="btn">
                             <Link to='/login'>
-                                <button onClick={this.props.logout}>Log Out</button>
+                                <button onClick={this.logout}>Log Out</button>
                             </Link>
                         </div>
 
                         <div className="btn">
-                            <button onClick={this.props.deleteAccount}>Delete</button>
+                            <button onClick={this.deleteAccount}>Delete</button>
                         </div>
                     </div>
 

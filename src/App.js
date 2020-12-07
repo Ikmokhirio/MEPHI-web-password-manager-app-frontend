@@ -14,74 +14,6 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-
-        this.updateUserData = this.updateUserData.bind(this)
-        this.logout = this.logout.bind(this)
-        this.deleteAccount = this.deleteAccount.bind(this)
-
-        this.state = {
-            username: "", // Current user data
-            role: "",
-            email: ""
-        }
-    }
-
-    componentDidMount() {
-        this.updateUserData() // Update user data if we have been logged already
-    }
-
-    updateUserData() {
-        console.log("UPDATING USER DATA")
-
-        fetch('/api/user', {
-            method: "get",
-            headers: {'Content-Type': 'application/json'}
-        }).then(res => {
-            res.json().then(data => {
-                this.setState({
-                    email: data.email,
-                    username: data.username,
-                    role: data.role
-                })
-
-            })
-        }).catch(e => {
-            console.error((e))
-        })
-    }
-
-    logout() {
-        fetch('/api/user/logout', {
-            method: "get",
-            headers: {'Content-Type': 'application/json'}
-        }).then(res => {
-            this.setState({
-                username: "",
-                role: "",
-                email: ""
-            })
-        }).catch(e => {
-            console.error((e))
-        })
-    }
-
-    deleteAccount() {
-
-        fetch('/api/users', {
-            method: "delete",
-            headers: {'Content-Type': 'application/json'}
-        }).then(res => {
-            this.setState({
-                username: "",
-                role: "",
-                email: ""
-            })
-        }).catch(e => {
-            console.error((e))
-        })
-        this.logout()
-
-        Redirect('/login')
     }
 
     render() {
@@ -93,16 +25,16 @@ class App extends Component {
                         <Route exact path="/" component={Home}/>
 
                         <Route exact path="/login"
-                               render={(props) => (<Login {...props} onUpdate={this.updateUserData}/>
+                               render={(props) => (<Login {...props}/>
                                )}/>
 
                         <Route exact path="/register"
-                               render={(props) => (<Register {...props} onUpdate={this.updateUserData}/>
+                               render={(props) => (<Register {...props}/>
                                )}/>
 
                         <Route exact path="/user"
                                render={(props) => (
-                                   <UserProfile {...props} user={this.state} logout={this.logout} deleteAccount={this.deleteAccount}/>
+                                   <UserProfile {...props}/>
                                )}/>
 
                         <Route exact path="/passwords" component={passwords}/>

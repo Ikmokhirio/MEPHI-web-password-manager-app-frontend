@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import {Link} from "react-router-dom";
+import {Redirect, Link} from "react-router-dom";
 import InputField from "./input/inputField";
 
 export default class Register extends Component {
@@ -12,27 +12,27 @@ export default class Register extends Component {
             email: "",
             username: "",
             password: "",
-            master_password: ""
+            master_password: "",
+            logged: false
         }
     }
 
     handleClick(event) {
         event.preventDefault();
 
-        console.log("SENDING")
-
+        this.setState({logged: false})
         fetch('/api/users', {
             method: "post",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                "username" : this.state.username,
-                "password" : this.state.password,
-                "email" : this.state.email,
-                "master_password" : this.state.master_password
+                "username": this.state.username,
+                "password": this.state.password,
+                "email": this.state.email,
+                "master_password": this.state.master_password
             })
         }).then(res => {
             res.text().then(data => console.log(data))
-            this.props.onUpdate()
+            this.setState({logged: true})
         }).catch(e => {
             console.error((e))
         })
@@ -40,6 +40,11 @@ export default class Register extends Component {
     }
 
     render() {
+
+        if (this.state.logged) {
+            return <Redirect to={"/user"}/>
+        }
+
         return (<form className="input_form">
             <h1>Register</h1>
 
