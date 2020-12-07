@@ -33,6 +33,7 @@ export default class PasswordCard extends Component {
     }
 
     editPassword(event) {
+        event.preventDefault()
         this.setState({edit: !this.state.edit})
 
         if (this.state.edit && this.state.password !== this.props.password) {

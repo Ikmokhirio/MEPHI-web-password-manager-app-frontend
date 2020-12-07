@@ -16,13 +16,16 @@ export default class AddPassword extends Component {
 
     addNewPassword(event) {
         event.preventDefault()
-
         fetch('/api/passwords', {
             method: "post",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(this.state)
         }).then(res => {
-            console.log("DA")
+            res.json().then(data => {
+                this.props.onAdd()
+                this.props.onClose()
+            })
+
         }).catch(e => {
             console.error((e))
         })
