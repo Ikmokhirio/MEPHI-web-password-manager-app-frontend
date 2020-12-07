@@ -22,8 +22,8 @@ export default class Login extends Component {
             method: "post",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                "username": this.state.username,
-                "password": this.state.password
+                username: this.state.username,
+                password: this.state.password
             })
         }).then(res => {
             this.props.onUpdate()
