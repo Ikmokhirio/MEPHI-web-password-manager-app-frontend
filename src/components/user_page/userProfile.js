@@ -111,7 +111,6 @@ export default class UserProfile extends Component {
                     <div className="user_data">
                         <h1>{this.state.username}</h1>
                         <p>{this.state.role}</p>
-                        <h2>Email</h2>
                         <p>{this.state.email}</p>
 
                         <div className="btn">
