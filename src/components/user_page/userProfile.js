@@ -35,7 +35,25 @@ export default class UserProfile extends Component {
 
     handleClick(event) {
         event.preventDefault();
-        alert(JSON.stringify(this.state));
+
+        console.log("SENDING")
+
+        fetch('/api/users', {
+            method: "put",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                username: this.props.user.username,
+                password: this.state.current_password,
+                new_password: this.state.new_password,
+                new_master_password: this.state.new_master_password,
+                new_email: this.state.new_email
+
+            })
+        }).then(res => {
+            this.props.onUpdate()
+        }).catch(e => {
+            console.error((e))
+        })
     }
 
     render() {
@@ -70,6 +88,12 @@ export default class UserProfile extends Component {
                     <form className="change_form">
                         <h1>Change data</h1>
 
+                        <InputField name="current_account_password" type="password"
+                                    placeholder="Current account password"
+                                    onChange={e => {
+                                        this.setState({current_password: e.target.value})
+                                    }}/>
+
                         <InputField name="current_master_password" type="password" placeholder="Current master password"
                                     onChange={e => {
                                         this.setState({current_master_password: e.target.value})
@@ -80,19 +104,13 @@ export default class UserProfile extends Component {
                                         this.setState({new_master_password: e.target.value})
                                     }}/>
 
-                        <InputField name="current_account_password" type="password"
-                                    placeholder="Current account password"
-                                    onChange={e => {
-                                        this.setState({current_password: e.target.value})
-                                    }}/>
-
                         <InputField name="new_account_password" type="password" placeholder="New account password"
                                     onChange={e => {
                                         this.setState({new_password: e.target.value})
                                     }}/>
 
                         <InputField name="Email" type="text" placeholder="E-mail" onChange={e => {
-                            this.setState({email: e.target.value})
+                            this.setState({new_email: e.target.value})
                         }}/>
 
                         <InputRadio optionName="Gender" options={this.options} onChange={e => {
