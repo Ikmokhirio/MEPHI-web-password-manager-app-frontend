@@ -36,8 +36,6 @@ export default class UserProfile extends Component {
     handleClick(event) {
         event.preventDefault();
 
-        console.log("SENDING")
-
         fetch('/api/users', {
             method: "put",
             headers: {'Content-Type': 'application/json'},
@@ -79,6 +77,10 @@ export default class UserProfile extends Component {
                             <Link to='/login'>
                                 <button onClick={this.props.logout}>Log Out</button>
                             </Link>
+                        </div>
+
+                        <div className="btn">
+                            <button onClick={this.props.deleteAccount}>Delete</button>
                         </div>
                     </div>
 

@@ -17,6 +17,7 @@ class App extends Component {
 
         this.updateUserData = this.updateUserData.bind(this)
         this.logout = this.logout.bind(this)
+        this.deleteAccount = this.deleteAccount.bind(this)
 
         this.state = {
             username: "", // Current user data
@@ -64,6 +65,25 @@ class App extends Component {
         })
     }
 
+    deleteAccount() {
+
+        fetch('/api/users', {
+            method: "delete",
+            headers: {'Content-Type': 'application/json'}
+        }).then(res => {
+            this.setState({
+                username: "",
+                role: "",
+                email: ""
+            })
+        }).catch(e => {
+            console.error((e))
+        })
+        this.logout()
+
+        Redirect('/login')
+    }
+
     render() {
         return (<div className="Wrapper">
             <Header/>
@@ -82,7 +102,7 @@ class App extends Component {
 
                         <Route exact path="/user"
                                render={(props) => (
-                                   <UserProfile {...props} user={this.state} logout={this.logout}/>
+                                   <UserProfile {...props} user={this.state} logout={this.logout} deleteAccount={this.deleteAccount}/>
                                )}/>
 
                         <Route exact path="/passwords" component={passwords}/>
