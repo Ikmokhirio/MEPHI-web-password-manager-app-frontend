@@ -36,8 +36,10 @@ export default class PasswordCard extends Component {
         event.preventDefault()
         this.setState({edit: !this.state.edit})
 
-        if (this.state.edit && this.state.password !== this.props.password) {
-            console.log("SENDING TO SERVER")
+        if (this.state.edit && (this.state.password !== this.props.password ||
+            this.state.title !== this.props.title ||
+            this.state.login !== this.props.login)) {
+
             this.props.updatePassword({
                 id: this.props.id,
                 password: this.state.password,
@@ -47,6 +49,7 @@ export default class PasswordCard extends Component {
         }
 
     }
+
 
     render() {
         return (
@@ -58,6 +61,9 @@ export default class PasswordCard extends Component {
                             <h2>{this.state.login}</h2>
                         </> :
                         <div className="edit">
+                            <button className="delete_password"
+                                    onClick={() => this.props.deletePassword({id: this.props.id})}><i
+                                className="fas fa-trash-alt"/></button>
                             <input type="text" value={this.state.title} onChange={event => {
                                 this.setState({title: event.target.value})
                             }}/>
@@ -82,7 +88,6 @@ export default class PasswordCard extends Component {
                         className="fas fa-eye"/></button>
                     <button className="copy_password" onClick={this.copyPassword}><i className="fas fa-copy"/></button>
                     <button className="edit_password" onClick={this.editPassword}><i className="fas fa-edit"/></button>
-
                 </div>
 
             </div>

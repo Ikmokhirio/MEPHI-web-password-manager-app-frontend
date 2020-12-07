@@ -510,6 +510,7 @@ body {
 }
 
 .password_card {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -597,6 +598,13 @@ body {
     text-decoration: underline;
 }
 
+.password_card .edit .delete_password {
+    position: absolute;
+    right: 0;
+    top:0;
+}
+
+
 .password_field {
     display: flex;
     flex-direction: row;
@@ -626,7 +634,7 @@ body {
                                      supported by Chrome, Edge, Opera and Firefox */
 }
 
-.password_field button {
+.password_field button, .password_card button {
     width: 24px;
     height: 24px;
     background: none;
@@ -640,7 +648,7 @@ body {
     inset 0 -1px 2px 0 #282a36;
 }
 
-.password_field button:hover {
+.password_field button:hover, .password_card button:hover {
     cursor: pointer;
     color: #ff5555;
 }

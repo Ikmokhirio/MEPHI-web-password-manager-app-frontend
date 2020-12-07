@@ -9,6 +9,7 @@ export default class Passwords extends Component {
 
         this.updatePassword = this.updatePassword.bind(this)
         this.getPasswords = this.getPasswords.bind(this)
+        this.deletePassword = this.deletePassword.bind(this)
         this.edit = this.edit.bind(this)
 
         this.state = {
@@ -18,7 +19,6 @@ export default class Passwords extends Component {
     }
 
     updatePassword(passwordData) {
-        console.log("CHANGING PASSWORDS")
         console.log(JSON.stringify(passwordData))
         fetch('/api/passwords', {
             method: "put",
@@ -35,12 +35,28 @@ export default class Passwords extends Component {
         })
     }
 
+    deletePassword(passwordData) {
+        fetch('/api/passwords', {
+            method: "delete",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(passwordData)
+        }).then(res => {
+            res.json().then(data => {
+                console.log(data)
+                console.log(typeof this.getPasswords)
+                this.getPasswords()
+            })
+
+        }).catch(e => {
+            console.error((e))
+        })
+    }
+
     componentDidMount() {
         this.getPasswords()
     }
 
     getPasswords() {
-        console.log("UPDATING PASSWORDS")
         fetch('/api/passwords', {
             method: "get",
             headers: {'Content-Type': 'application/json'}
@@ -65,8 +81,9 @@ export default class Passwords extends Component {
 
                 {
                     this.state.passwords.map((password) => {
-                        return (<PasswordCard title={password.title} login={password.login} password={password.password} updatePassword={this.updatePassword}
-                                      key={password.id} id={password.id}/>)
+                        return (<PasswordCard title={password.title} login={password.login} password={password.password}
+                                              updatePassword={this.updatePassword}
+                                              key={password.id} id={password.id} deletePassword={this.deletePassword}/>)
                     })
                 }
 
