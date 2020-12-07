@@ -735,8 +735,13 @@ body {
 
 .add_password_popup {
     width: 100vw;
-    height: 100vh;
+    height: 100vh;/* Fix this later*/
+    margin: 0;
     background: rgba(0,0,0,.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     position: absolute;
     top: 0;
@@ -745,14 +750,23 @@ body {
 }
 
 .add_password_popup .input_form {
-    position: relative;
-    top: 50%;
-    left: 50%;
     width: 360px;
     height: 512px;
-    margin-left: -192px;
-    margin-top: -268px;
+    margin: 128px 32px 32px;
     padding: 32px 32px;
+    position: relative;
+}
+
+@media screen and (max-width: 650px) {
+
+    .add_password_popup {
+        height: 133vh; /* Fix this later*/
+    }
+
+    .add_password_popup .input_form {
+        width: 256px;
+        height: 512px;
+    }
 }
 
 .add_password_popup .close_button {

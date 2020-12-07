@@ -26,7 +26,7 @@ export default class Passwords extends Component {
         }).then(res => {
 
             res.json().then(data => {
-                if(data.error_name) {
+                if (data.error_name) {
                     console.error(data.error_name)
                 }
                 this.getPasswords()
@@ -77,22 +77,25 @@ export default class Passwords extends Component {
 
         return (
 
-            <div className="passwords_container">
-
+            <div>
                 {this.state.edit ? <AddPassword onAdd={this.getPasswords} onClose={this.edit}/> : ""}
+                <div className="passwords_container">
 
-                {
-                    this.state.passwords.map((password) => {
-                        return (<PasswordCard title={password.title} login={password.login} password={password.password}
+
+                    {
+                        this.state.passwords.map((password) => {
+                            return (
+                                <PasswordCard title={password.title} login={password.login} password={password.password}
                                               updatePassword={this.updatePassword}
                                               key={password.id} id={password.id} deletePassword={this.deletePassword}/>)
-                    })
-                }
+                        })
+                    }
 
-                <div className="add_password_button">
-                    <button onClick={this.edit}>
-                        <h1>ADD NEW PASSWORD</h1>
-                    </button>
+                    <div className="add_password_button">
+                        <button onClick={this.edit}>
+                            <h1>ADD NEW PASSWORD</h1>
+                        </button>
+                    </div>
                 </div>
             </div>
 
