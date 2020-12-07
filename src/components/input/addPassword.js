@@ -15,7 +15,17 @@ export default class AddPassword extends Component {
     }
 
     addNewPassword(event) {
-        {/* ADD NEW PASSWORD TO THE SERVER */}
+        event.preventDefault()
+
+        fetch('/api/passwords', {
+            method: "post",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(this.state)
+        }).then(res => {
+            console.log("DA")
+        }).catch(e => {
+            console.error((e))
+        })
     }
 
     render() {
@@ -26,11 +36,11 @@ export default class AddPassword extends Component {
                     <h1>Add new password</h1>
 
                     <InputField name="title" type="text" placeholder="Title" onChange={e => {
-                        this.setState({email: e.target.value})
+                        this.setState({title: e.target.value})
                     }}/>
 
                     <InputField name="login" type="text" placeholder="Login" onChange={e => {
-                        this.setState({email: e.target.value})
+                        this.setState({login: e.target.value})
                     }}/>
 
                     <InputField name="Password" type="password" placeholder="Password" onChange={e => {
