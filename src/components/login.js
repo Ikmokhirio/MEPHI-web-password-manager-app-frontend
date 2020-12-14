@@ -10,7 +10,8 @@ export default class Login extends Component {
         this.state = {
             username: "",
             password: "",
-            logged: false
+            logged: false,
+            visible: false
         }
     }
 
@@ -54,9 +55,20 @@ export default class Login extends Component {
                 this.setState({username: e.target.value})
             }}/>
 
-            <InputField name="Password" type="password" placeholder="Password" onChange={e => {
-                this.setState({password: e.target.value})
-            }}/>
+            <div className="password_input">
+                <InputField name="Password" type={this.state.visible ? "text" : "password"}
+                            placeholder="Password" onChange={e => {
+                    this.setState({password: e.target.value})
+                }} value={this.state.password}/>
+                <button className="show_password"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            this.setState({visible: !this.state.visible}
+                            )
+                        }}>
+                    <i className="fas fa-eye"/>
+                </button>
+            </div>
 
             <div className="btn">
                 <button onClick={this.handleClick}>LOG IN</button>

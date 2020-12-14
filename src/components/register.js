@@ -13,7 +13,9 @@ export default class Register extends Component {
             username: "",
             password: "",
             master_password: "",
-            logged: false
+            logged: false,
+            visible: false,
+            master_visible: false
         }
     }
 
@@ -66,13 +68,34 @@ export default class Register extends Component {
                 this.setState({username: e.target.value})
             }}/>
 
-            <InputField name="Password" type="password" placeholder="Password" onChange={e => {
-                this.setState({password: e.target.value})
-            }}/>
+            <div className="password_input">
+                <InputField name="Password" type={this.state.visible ? "text" : "password"}
+                            placeholder="Password" onChange={e => {
+                    this.setState({password: e.target.value})
+                }} value={this.state.password}/>
+                <button className="show_password"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            this.setState({visible: !this.state.visible}
+                            )
+                        }}>
+                    <i className="fas fa-eye"/>
+                </button>
+            </div>
 
-            <InputField name="master_password" type="password" placeholder="Master password" onChange={e => {
-                this.setState({master_password: e.target.value})
-            }}/>
+            <div className="password_input">
+                <InputField name="master_password" type={this.state.master_visible ? "text" : "password"} placeholder="Master password" onChange={e => {
+                    this.setState({master_password: e.target.value})
+                }}/>
+                <button className="show_password"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            this.setState({master_visible: !this.state.master_visible}
+                            )
+                        }}>
+                    <i className="fas fa-eye"/>
+                </button>
+            </div>
 
             <div className="btn">
                 <button onClick={this.handleClick}>Register</button>
