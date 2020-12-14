@@ -8,6 +8,8 @@ export default class Register extends Component {
         super(props);
 
         this.handleClick = this.handleClick.bind(this);
+        this.generateNewPassword = this.generateNewPassword.bind(this)
+
         this.state = {
             email: "",
             username: "",
@@ -16,6 +18,24 @@ export default class Register extends Component {
             logged: false,
             visible: false,
             master_visible: false
+        }
+    }
+
+    generateNewPassword(event, master) { // Move it to separate file
+        event.preventDefault()
+
+        let len = 20
+        let password = "";
+        let symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!№;%:?*()_+=";
+        for (let i = 0; i < len; i++) {
+            password += symbols.charAt(Math.floor(Math.random() * symbols.length));
+        }
+
+        console.log(event)
+        if (!master) {
+            this.setState({password: password})
+        } else {
+            this.setState({master_password: password})
         }
     }
 
@@ -82,19 +102,18 @@ export default class Register extends Component {
                     <i className="fas fa-eye"/>
                 </button>
                 <button className="password_option"
-                        onClick={(e) => {
-                            e.preventDefault()
-                            this.setState({visible: !this.state.visible}
-                            )
+                        onClick={e => {
+                            this.generateNewPassword(e, false) // Make it look better
                         }}>
                     <i className="fas fa-random"/>
                 </button>
             </div>
 
             <div className="password_input">
-                <InputField name="master_password" type={this.state.master_visible ? "text" : "password"} placeholder="Master password" onChange={e => {
+                <InputField name="master_password" type={this.state.master_visible ? "text" : "password"}
+                            placeholder="Master password" onChange={e => {
                     this.setState({master_password: e.target.value})
-                }}/>
+                }} value={this.state.master_password}/>
                 <button className="password_option"
                         onClick={(e) => {
                             e.preventDefault()
@@ -104,10 +123,8 @@ export default class Register extends Component {
                     <i className="fas fa-eye"/>
                 </button>
                 <button className="password_option"
-                        onClick={(e) => {
-                            e.preventDefault()
-                            this.setState({visible: !this.state.visible}
-                            )
+                        onClick={e => {
+                            this.generateNewPassword(e, true)  // Make it look better
                         }}>
                     <i className="fas fa-random"/>
                 </button>
