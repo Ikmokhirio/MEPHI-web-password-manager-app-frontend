@@ -57,19 +57,32 @@ export default class PasswordCard extends Component {
                 {
                     !this.state.edit ?
                         <>
-                            <h1>{this.state.title}</h1>
-                            <h2>{this.state.login}</h2>
+                            <div className="password_title">
+                                <h1>{this.state.title}</h1>
+                            </div>
+                            <div className="password_login">
+                                <h2>{this.state.login}</h2>
+                            </div>
                         </> :
                         <div className="edit">
+
                             <button className="delete_password"
                                     onClick={() => this.props.deletePassword({id: this.props.id})}><i
-                                className="fas fa-trash-alt"/></button>
-                            <input type="text" value={this.state.title} onChange={event => {
-                                this.setState({title: event.target.value})
-                            }}/>
-                            <input type="text" value={this.state.login} onChange={event => {
-                                this.setState({login: event.target.value})
-                            }}/>
+                                className="fas fa-trash-alt"/>
+                            </button>
+
+                            <div className="password_title">
+                                <input type="text" value={this.state.title} onChange={event => {
+                                    this.setState({title: event.target.value})
+                                }}/>
+                            </div>
+
+                            <div className="password_login">
+                                <input type="text" value={this.state.login} onChange={event => {
+                                    this.setState({login: event.target.value})
+                                }}/>
+                            </div>
+
                         </div>
                 }
 
@@ -84,8 +97,11 @@ export default class PasswordCard extends Component {
                            onChange={event => this.setState({password: event.target.value})}
                            value={this.state.password}
                            disabled={!this.state.edit}/>
-                    <button className="show_password" onClick={(e) => this.setState({visible: !this.state.visible})}><i
-                        className="fas fa-eye"/></button>
+
+                    <button className="show_password" onClick={(e) => this.setState({visible: !this.state.visible})}>
+                        <i className="fas fa-eye"/>
+                    </button>
+
                     <button className="copy_password" onClick={this.copyPassword}><i className="fas fa-copy"/></button>
                     <button className="edit_password" onClick={this.editPassword}><i className="fas fa-edit"/></button>
                 </div>
