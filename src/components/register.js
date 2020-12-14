@@ -73,7 +73,7 @@ export default class Register extends Component {
                             placeholder="Password" onChange={e => {
                     this.setState({password: e.target.value})
                 }} value={this.state.password}/>
-                <button className="show_password"
+                <button className="password_option"
                         onClick={(e) => {
                             e.preventDefault()
                             this.setState({visible: !this.state.visible}
@@ -81,19 +81,35 @@ export default class Register extends Component {
                         }}>
                     <i className="fas fa-eye"/>
                 </button>
+                <button className="password_option"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            this.setState({visible: !this.state.visible}
+                            )
+                        }}>
+                    <i className="fas fa-random"/>
+                </button>
             </div>
 
             <div className="password_input">
                 <InputField name="master_password" type={this.state.master_visible ? "text" : "password"} placeholder="Master password" onChange={e => {
                     this.setState({master_password: e.target.value})
                 }}/>
-                <button className="show_password"
+                <button className="password_option"
                         onClick={(e) => {
                             e.preventDefault()
                             this.setState({master_visible: !this.state.master_visible}
                             )
                         }}>
                     <i className="fas fa-eye"/>
+                </button>
+                <button className="password_option"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            this.setState({visible: !this.state.visible}
+                            )
+                        }}>
+                    <i className="fas fa-random"/>
                 </button>
             </div>
 

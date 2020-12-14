@@ -258,7 +258,7 @@ body {
     color: #6272a4;
 }
 
-.show_password {
+.password_option {
     width: 24px;
     height: 24px;
     background: none;
@@ -272,7 +272,7 @@ body {
 
 }
 
-.show_password:hover {
+.password_option:hover {
     cursor: pointer;
     color: #ff5555;
 }

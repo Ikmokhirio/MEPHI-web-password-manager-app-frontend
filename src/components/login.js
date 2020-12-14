@@ -60,7 +60,7 @@ export default class Login extends Component {
                             placeholder="Password" onChange={e => {
                     this.setState({password: e.target.value})
                 }} value={this.state.password}/>
-                <button className="show_password"
+                <button className="password_option"
                         onClick={(e) => {
                             e.preventDefault()
                             this.setState({visible: !this.state.visible}
