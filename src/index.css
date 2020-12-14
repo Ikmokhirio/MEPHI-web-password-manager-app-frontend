@@ -15,6 +15,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    position: relative;
 
     margin: 0 auto;
     width: 100vw;
@@ -49,11 +50,13 @@ body {
 
 .btn {
     margin: 1vh 2vw;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn button {
-    width: 256px;
+    width: 192px;
     height: 64px;
     color: #f8f8f2;
     background: none;
@@ -80,10 +83,11 @@ body {
     .header .btn button {
         width: 192px;
         height: 32px;
+        font-size: 24px;
     }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 920px) {
     /* Adaptive header links */
     .header .btn button {
         width: 128px;
@@ -94,9 +98,14 @@ body {
 
 @media screen and (max-width: 650px) {
     /* Adaptive header links */
-    .header .btn button {
+    .header .btn {
         width: 60vw;
         height: 64px;
+    }
+
+    .header .btn button{
+        width: 192px;
+        height: 32px;
         font-size: 24px;
     }
 }
@@ -524,6 +533,7 @@ body {
         justify-content: space-around;
         flex-wrap: wrap;
         flex-shrink: 0;
+        flex-grow: 1;
         max-width: 70vw;
     }
 
@@ -735,7 +745,7 @@ body {
 
 .add_password_popup {
     width: 100vw;
-    height: 100vh;/* Fix this later*/
+    height: 100%;/* Fix this later*/;
     margin: 0;
     background: rgba(0,0,0,.5);
 
@@ -760,7 +770,7 @@ body {
 @media screen and (max-width: 650px) {
 
     .add_password_popup {
-        height: 133vh; /* Fix this later*/
+        height: 100vh; /* Fix this later*/
     }
 
     .add_password_popup .input_form {
