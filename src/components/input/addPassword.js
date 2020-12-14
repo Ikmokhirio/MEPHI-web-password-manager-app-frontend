@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import InputField from "./inputField";
+import passwords from "../passwords/passwords";
 
 export default class AddPassword extends Component {
     constructor(props) {
@@ -8,10 +9,25 @@ export default class AddPassword extends Component {
         this.state = {
             title: "",
             login: "",
-            password: ""
+            password: "",
+            visible: false
         }
 
         this.addNewPassword = this.addNewPassword.bind(this)
+        this.generateNewPassword = this.generateNewPassword.bind(this)
+    }
+
+    generateNewPassword(event) {
+        event.preventDefault()
+
+        let len = 20
+        let password = "";
+        let symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!№;%:?*()_+=";
+        for (let i = 0; i < len; i++) {
+            password += symbols.charAt(Math.floor(Math.random() * symbols.length));
+        }
+
+        this.setState({password: password})
     }
 
     addNewPassword(event) {
@@ -19,10 +35,14 @@ export default class AddPassword extends Component {
         fetch('/api/passwords', {
             method: "post",
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(this.state)
+            body: JSON.stringify({
+                title: this.state.title,
+                login: this.state.login,
+                password: this.state.password
+            })
         }).then(res => {
             res.json().then(data => {
-                if(data.error_name) {
+                if (data.error_name) {
                     console.error(data.error_name)
                 }
                 this.props.onAdd()
@@ -49,15 +69,35 @@ export default class AddPassword extends Component {
                         this.setState({login: e.target.value})
                     }}/>
 
-                    <InputField name="Password" type="password" placeholder="Password" onChange={e => {
-                        this.setState({password: e.target.value})
-                    }}/>
+                    <div className="password_input">
+                        <InputField name="Password" type={this.state.visible ? "text" : "password"}
+                                    placeholder="Password" onChange={e => {
+                            this.setState({password: e.target.value})
+                        }} value={this.state.password}/>
+                        <button className="show_password"
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    this.setState({visible: !this.state.visible}
+                                    )
+                                }}>
+                            <i className="fas fa-eye"/>
+                        </button>
+                    </div>
+
+
                     <div className="btn">
                         <button onClick={this.addNewPassword}>Add</button>
                     </div>
+
+                    <div className="btn">
+                        <button onClick={this.generateNewPassword}>Generate</button>
+                    </div>
+
                     <div className="close_button">
                         <button onClick={this.props.onClose}><i className="fas fa-times-circle"/></button>
                     </div>
+
+
                 </form>
 
             </div>)
