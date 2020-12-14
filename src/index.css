@@ -103,7 +103,7 @@ body {
         height: 64px;
     }
 
-    .header .btn button{
+    .header .btn button {
         width: 192px;
         height: 32px;
         font-size: 24px;
@@ -164,17 +164,26 @@ body {
 
 }
 
-.input_form h1 {
+.input_form h1, .input_form h2 {
     text-align: center;
-    margin-bottom: 60px;
     color: #373F47;
+    margin: 15px;
+
+}
+
+.input_form h1 {
     font-size: 32px;
+}
+
+.input_form h2 {
+    font-size: 24px;
 }
 
 .input_text {
     border-bottom: 2px solid #373F47;
     position: relative;
-    margin: 30px 0;
+    margin: 30px 5px;
+    width: 100%;
 }
 
 .input_text input,
@@ -247,6 +256,34 @@ body {
 
 .bottom_text a:hover {
     color: #6272a4;
+}
+
+.show_password {
+    width: 24px;
+    height: 24px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #373F47;
+    margin: 5px;
+    padding: 0;
+
+    box-shadow: none;
+
+}
+
+.show_password:hover {
+    cursor: pointer;
+    color: #ff5555;
+}
+
+.password_input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
 }
 
 /*===========RADIO BUTTONS============+*/
@@ -419,7 +456,6 @@ body {
     margin-bottom: 5px;
     margin-top: 5px;
     margin-left: 0;
-    margin-left: 0;
     width: 100%;
 }
 
@@ -579,7 +615,7 @@ body {
                                      supported by Chrome, Edge, Opera and Firefox */
 }
 
-.password_card h1, .password_card h2 {
+.password_card h1, .password_card h2, .password_card .edit input {
     margin: 5px;
     width: 90%;
     color: #373F47;
@@ -599,6 +635,12 @@ body {
                                      supported by Chrome, Edge, Opera and Firefox */
 }
 
+.password_card .edit input {
+    appearance: none;
+    border: 1px solid #ff5555;
+    border-radius: 5px;
+}
+
 .password_card h1 {
     font-size: 24px;
 }
@@ -612,26 +654,23 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 90%;
 }
 
-.password_card .edit input {
-    margin: 5px;
-    width: 90%;
-    color: #373F47;
-    text-align: center;
-    border: none;
-    background: none;
-    border-radius: 15px;
-    padding: 5px;
-    /*box-shadow: inset 0 1px 2px 0 #282a36,*/
-    /*inset 0 -1px 2px 0 #282a36;*/
-    text-decoration: underline;
+.password_card .password_title {
+    height: 32px;
+    width: 100%;
+}
+
+.password_card .password_login {
+    height: 32px;
+    width: 100%;
 }
 
 .password_card .edit .delete_password {
     position: absolute;
     right: 0;
-    top:0;
+    top: 0;
 }
 
 
@@ -647,13 +686,16 @@ body {
 
 .password_field input {
     margin: 0 10px 0;
-    width: calc(100% - 72px - 30px);
+    width: 60%;
+    text-align: center;
     border: none;
     background: none;
-    border-radius: 15px;
-    padding: 5px;
-    box-shadow: inset 0 1px 2px 0 #282a36,
-    inset 0 -1px 2px 0 #282a36;
+    font-size: 24px;
+    color: #282a36;
+    outline: none;
+    height: 24px;
+    box-shadow: none;
+    border-bottom: 2px solid #373F47;
 
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -669,13 +711,13 @@ body {
     height: 24px;
     background: none;
     border: none;
+    font-size: 16px;
     color: #373F47;
     margin: 5px;
     padding: 0;
 
-    border-radius: 50%;
-    box-shadow: inset 0 1px 2px 0 #282a36,
-    inset 0 -1px 2px 0 #282a36;
+    box-shadow: none;
+
 }
 
 .password_field button:hover, .password_card button:hover {
@@ -745,9 +787,9 @@ body {
 
 .add_password_popup {
     width: 100vw;
-    height: 100%;/* Fix this later*/;
+    height: 100%; /* Fix this later*/;
     margin: 0;
-    background: rgba(0,0,0,.5);
+    background: rgba(0, 0, 0, .5);
 
     display: flex;
     justify-content: center;
@@ -765,6 +807,11 @@ body {
     margin: 128px 32px 32px;
     padding: 32px 32px;
     position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 @media screen and (max-width: 650px) {
