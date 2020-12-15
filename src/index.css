@@ -394,6 +394,10 @@ body {
 
 }
 
+.info_card_content p {
+    text-align: center;
+}
+
 .info_card .btn {
     margin-top: 10px;
     margin-bottom: 10px;
