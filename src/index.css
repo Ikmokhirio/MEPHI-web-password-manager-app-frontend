@@ -494,7 +494,8 @@ body {
     width: 80%;
 }
 
-.change_form h1 {
+.change_form h1, .change_form h3 {
+    text-align: center;
     color: #282a36;
 }
 

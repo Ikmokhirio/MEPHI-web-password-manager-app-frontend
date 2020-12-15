@@ -134,6 +134,11 @@ export default class UserProfile extends Component {
 
                 <div className="right_block">
                     <form className="change_form">
+
+                        <h3>To change user data enter your current password and new data</h3>
+
+                        <h3>To change master password enter your current master password</h3>
+
                         <h1>Change data</h1>
 
                         <InputField name="current_account_password" type="password"
