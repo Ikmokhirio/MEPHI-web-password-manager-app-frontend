@@ -84,13 +84,12 @@ export default class AddPassword extends Component {
                         </button>
                     </div>
 
-
-                    <div className="btn">
-                        <button onClick={this.addNewPassword}>Add</button>
+                    <div className="btn_width">
+                        <button onClick={this.generateNewPassword}>Generate strong password</button>
                     </div>
 
                     <div className="btn">
-                        <button onClick={this.generateNewPassword}>Generate</button>
+                        <button onClick={this.addNewPassword}>Add</button>
                     </div>
 
                     <div className="close_button">
