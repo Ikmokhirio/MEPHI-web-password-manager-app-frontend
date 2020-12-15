@@ -8,7 +8,7 @@ import UserProfile from "./components/user_page/userProfile";
 import passwords from "./components/passwords/passwords";
 
 import {BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
-
+import notFound from "./components/static/notFound";
 
 class App extends Component {
 
@@ -38,6 +38,8 @@ class App extends Component {
                                )}/>
 
                         <Route exact path="/passwords" component={passwords}/>
+
+                        <Route component={notFound}/>
 
                         <Redirect from={'/home'} to={'/'}/>
                         <Redirect from={'/index'} to={'/'}/>

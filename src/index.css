@@ -850,3 +850,14 @@ body {
     color: #ff5555;
     cursor: pointer;
 }
+
+/*===========ERROR =============*/
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #ff5555;
+    width: 100vw;
+    height: 75vh;
+}
