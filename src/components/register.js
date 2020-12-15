@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import {Redirect, Link} from "react-router-dom";
 import InputField from "./input/inputField";
+import generateNewPassword from "./passwordGenerator";
 
 export default class Register extends Component {
 
@@ -8,7 +9,6 @@ export default class Register extends Component {
         super(props);
 
         this.handleClick = this.handleClick.bind(this);
-        this.generateNewPassword = this.generateNewPassword.bind(this)
 
         this.state = {
             email: "",
@@ -18,23 +18,6 @@ export default class Register extends Component {
             logged: false,
             visible: false,
             master_visible: false
-        }
-    }
-
-    generateNewPassword(event, master) { // Move it to separate file
-        event.preventDefault()
-
-        let len = 20
-        let password = "";
-        let symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!№;%:?*()_+=";
-        for (let i = 0; i < len; i++) {
-            password += symbols.charAt(Math.floor(Math.random() * symbols.length));
-        }
-
-        if (!master) {
-            this.setState({password: password})
-        } else {
-            this.setState({master_password: password})
         }
     }
 
@@ -101,8 +84,8 @@ export default class Register extends Component {
                     <i className="fas fa-eye"/>
                 </button>
                 <button className="password_option"
-                        onClick={e => {
-                            this.generateNewPassword(e, false) // Make it look better
+                        onClick={(event) => {
+                            this.setState({password: generateNewPassword(event, 30)})
                         }}>
                     <i className="fas fa-random"/>
                 </button>
@@ -122,8 +105,8 @@ export default class Register extends Component {
                     <i className="fas fa-eye"/>
                 </button>
                 <button className="password_option"
-                        onClick={e => {
-                            this.generateNewPassword(e, true)  // Make it look better
+                        onClick={(event) => {
+                            this.setState({master_password: generateNewPassword(event, 30)})
                         }}>
                     <i className="fas fa-random"/>
                 </button>

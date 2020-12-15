@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import InputField from "./inputField";
 import passwords from "../passwords/passwords";
+import generateNewPassword from "../passwordGenerator";
 
 export default class AddPassword extends Component {
     constructor(props) {
@@ -14,21 +15,8 @@ export default class AddPassword extends Component {
         }
 
         this.addNewPassword = this.addNewPassword.bind(this)
-        this.generateNewPassword = this.generateNewPassword.bind(this)
     }
 
-    generateNewPassword(event) {
-        event.preventDefault()
-
-        let len = 20
-        let password = "";
-        let symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!№;%:?*()_+=";
-        for (let i = 0; i < len; i++) {
-            password += symbols.charAt(Math.floor(Math.random() * symbols.length));
-        }
-
-        this.setState({password: password})
-    }
 
     addNewPassword(event) {
         event.preventDefault()
@@ -85,7 +73,9 @@ export default class AddPassword extends Component {
                     </div>
 
                     <div className="btn_width">
-                        <button onClick={this.generateNewPassword}>Generate strong password</button>
+                        <button onClick={(event) => {
+                            this.setState({password: generateNewPassword(event,30)})
+                        }}>Generate strong password</button>
                     </div>
 
                     <div className="btn">
