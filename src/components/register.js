@@ -31,7 +31,6 @@ export default class Register extends Component {
             password += symbols.charAt(Math.floor(Math.random() * symbols.length));
         }
 
-        console.log(event)
         if (!master) {
             this.setState({password: password})
         } else {
