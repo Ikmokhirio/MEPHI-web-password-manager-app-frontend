@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: './src/index.js',
+    entry: './src/index.jsx',
     output: {
         path: path.join(__dirname, '/public'),
         filename: 'bundle.js',
@@ -10,7 +10,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.jsx$|\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader'
             },
@@ -19,6 +19,9 @@ module.exports = {
                 use: ['style-loader', 'css-loader']
             }
         ]
+    },
+    resolve: {
+        extensions: [',','.js','.jsx']
     },
     devServer: {
         contentBase: path.join(__dirname, '/public'),
