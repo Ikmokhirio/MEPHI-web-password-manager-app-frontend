@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
-import InputField from "./inputField";
-import passwords from "../passwords/passwords";
-import generateNewPassword from "../passwordGenerator";
+import InputField from "./inputField"
+import generateNewPassword from "../passwordGenerator"
 
 export default class AddPassword extends Component {
     constructor(props) {
