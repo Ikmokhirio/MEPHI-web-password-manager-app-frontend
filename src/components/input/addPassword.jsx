@@ -10,7 +10,8 @@ export default class AddPassword extends Component {
             title: "",
             login: "",
             password: "",
-            visible: false
+            visible: false,
+            loading: false
         }
 
         this.addNewPassword = this.addNewPassword.bind(this)
@@ -19,6 +20,9 @@ export default class AddPassword extends Component {
 
     addNewPassword(event) {
         event.preventDefault()
+        this.setState({
+            loading:true
+        })
         fetch('/api/passwords', {
             method: "post",
             headers: {'Content-Type': 'application/json'},
@@ -29,6 +33,9 @@ export default class AddPassword extends Component {
             })
         }).then(res => {
             res.json().then(data => {
+                this.setState({
+                    loading:false
+                })
                 if (data.error_name) {
                     console.error(data.error_name)
                 }
@@ -42,9 +49,15 @@ export default class AddPassword extends Component {
     }
 
     render() {
+
+        if(this.state.loading) {
+            return (<div className="add_password_popup">
+                <h1>Loading...</h1>
+            </div> )
+        }
+
         return (
             <div className="add_password_popup">
-
                 <form className="input_form">
                     <h1>Add new password</h1>
 

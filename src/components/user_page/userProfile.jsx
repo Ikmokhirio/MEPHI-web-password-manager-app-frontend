@@ -103,6 +103,8 @@ export default class UserProfile extends Component {
     render() {
         if (!this.state.logged) {
             return <Redirect to={"/login"}/>
+        } else if(!this.state.username) {
+            return <h1>Loading...</h1>
         }
         return (
             <div className="user_profile">

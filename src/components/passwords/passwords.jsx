@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PasswordCard from "./passwordCard";
 import AddPassword from "../input/addPassword";
+import PasswordNotification from "./passwordNotification";
 
 export default class Passwords extends Component {
 
@@ -14,7 +15,8 @@ export default class Passwords extends Component {
 
         this.state = {
             edit: false,
-            passwords: []
+            passwords: [],
+            loading: false
         }
     }
 
@@ -59,11 +61,20 @@ export default class Passwords extends Component {
     }
 
     getPasswords() {
+        this.setState({
+            loading: true
+        })
         fetch('/api/passwords', {
             method: "get",
             headers: {'Content-Type': 'application/json'}
         }).then(res => {
-            res.json().then(data => this.setState({passwords: data}))
+            res.json().then(data => {
+                    this.setState({
+                        loading: false
+                    })
+                    this.setState({passwords: data})
+                }
+            )
         }).catch(e => {
             console.error((e))
         })
@@ -74,6 +85,16 @@ export default class Passwords extends Component {
     }
 
     render() {
+
+        if (this.state.loading) {
+            return (
+                <div className="passwords_container">
+                    <div className="add_password_button">
+                        <PasswordNotification message="Loading..."/>
+                    </div>
+                </div>
+            )
+        }
 
         return (
 

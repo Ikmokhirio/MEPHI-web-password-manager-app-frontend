@@ -735,7 +735,9 @@ body {
     transition: 0.5s ease-in-out all;
 }
 
-.copied_visible, .copied_hidden {
+
+
+.copied_visible, .copied_hidden, .password_card .message{
     visibility: visible;
     position: absolute;
     width: inherit;
@@ -756,6 +758,10 @@ body {
     /* Non-prefixed version, currently
                                      supported by Chrome, Edge, Opera and Firefox */
 
+}
+
+.password_card .message {
+    background: rgba(0, 0, 0, 0.25);
 }
 
 .copied_hidden {
